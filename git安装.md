@@ -1,6 +1,6 @@
 # git安装
 
-查收n
+查收 fenzhin
 
 1 git config --user.name "mdsjuk"
 
@@ -43,3 +43,18 @@ git remote  remove 清除连接
 ![image-20210325121408723](C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210325121408723.png)
 
 dev 分支 将HEAD 指针指向dev 
+
+1 git branch 分支名  创建分支
+
+2 git checkout 分支名 切换分支
+
+3 git merge 分支名  将当前分与分支名名 合并 
+
+### merge 冲突
+
+git采用 >>>>> ==== <<<< 符号标记冲突
+
+需要手段修改 再进行提交  *git add git commit* 提交
+
+远程拉取 git pull = fetch+merge
+
