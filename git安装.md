@@ -1,8 +1,6 @@
 # git安装
 
-
-fenzfasdf查收 fenzhin
-
+fenzfasdf查收 fenzhi
 
 1 git config --user.name "mdsjuk"
 
