@@ -1,6 +1,6 @@
 # git安装
 
-查收n
+查收n master
 
 1 git config --user.name "mdsjuk"
 
