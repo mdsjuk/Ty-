@@ -1,6 +1,6 @@
 # git安装
 
-fsa查收n master
+master
 
 1 git config --user.name "mdsjuk"
 
