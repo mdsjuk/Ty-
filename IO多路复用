@@ -1,0 +1,81 @@
+# BIO NIO AIO
+
+### 	同步与异步的区别在于，数据从内核空间拷贝到用户空间是否由用户线程完成
+
+###      阻塞与非阻塞的区别在于 线程阻塞在读写上 非阻塞线程可以执行其他任务
+
+
+
+- BIO 同步阻塞 
+
+<img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101508058.png" alt="image-20210326101508058" style="zoom: 67%;" />
+
+- NIO 同步非阻塞
+
+  <img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101526711.png" alt="image-20210326101526711" style="zoom: 67%;" />
+
+  
+
+  
+
+  
+
+  - IO多路复用
+
+    ​	                                     <img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101538535.png" alt="image-20210326101538535" style="zoom:67%;" />
+
+    - select
+
+        文件描述符FD  用rset(bitmap)保存对应的文件描述符 将rset传递到内核态,内核态进行判断并将rset置位,用户态遍历rset进行处理,reset需要重进行赋值. 
+
+      缺点:1 用户态切换内核态开销
+
+      ​		2 rset不可重用
+
+      ​		3 rset文件描述符有大小限制
+
+      ​		4 用户态遍历rset o(n)复杂度
+
+    - poll
+
+      对select进行改进 创建新的文件结构pollfd: 
+
+      ``` c++
+       class pollfd{    
+      	int fd; //文件描述符
+      	int event; //标记读写事件
+          int revent; //事件返回标志
+      }
+      ```
+
+      ​	缺点:1 用户态切换内核态开销
+
+      ​			2 用户态遍历 o(n)
+
+    - epoll
+
+       1 create epfd //创建一个记录文件
+
+      ``` c++
+      struct eventpoll {
+      　　/*红黑树的根节点，这棵树中存储着所有添加到epoll中的事件，
+      　　也就是这个epoll监控的事件*/
+      　　struct rb_root rbr;
+      　　/*双向链表rdllist保存着将要通过epoll_wait返回给用户的、满足条件的事件*/
+      　　struct list_head rdllist;
+      }; 
+      ```
+
+       2 epfd 记录 文件描述符fd 与读写事件 event
+
+       3 内核与用户态共享地址 进行判断  有数据进行重排 将有数据的 fd-event 排到最前面 并且记录有数据个数 
+
+      ​	 支持水平触发:  缓存里面有数据就会通知会多次 
+
+      ​	支持边缘触发:  缓存里面有数据就也只通知一次
+
+      ![image-20210326104545839](C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326104545839.png)
+
+- AIO 异步非阻塞
+
+<img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101617487.png" alt="image-20210326101617487" style="zoom:67%;" />
