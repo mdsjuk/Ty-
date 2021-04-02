@@ -53,7 +53,6 @@ public static void Fun(int a,Function<Integer,Integer> f){
   public class Lamdba {
       public static void main(String[] args) {
           addtest addtest=(x,y)->{return x;};
-  
           /**方法引用 将方法作为Lambda的值 以下两种等价**/
           addtest addtest1=(x,y)->static_add(x,y);
           /**类::静态方法
