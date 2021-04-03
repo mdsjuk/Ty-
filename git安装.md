@@ -40,7 +40,7 @@ git remote  remove 清除连接
 
 # 分支管理
 
-![image-20210325121408723](C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210325121408723.png)
+![image-20210402155505031]( https://cdn.jsdelivr.net/gh/mdsjuk/Picture/img/image-20210402155505031.png)
 
 dev 分支 将HEAD 指针指向dev 
 

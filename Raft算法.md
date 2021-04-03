@@ -23,7 +23,7 @@
 
 网络被分区后的节点 会产生多个leader 恢复网络后 leader会降级 只保留一个leader 保证数据修改一致性
 
-<img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210331144856804.png" alt="image-20210331144856804" style="zoom:67%;" />
+<img src="https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190507.png" alt="image-20210331144856804" style="zoom:67%;" />
 
 ​	每条日志除了存储状态机的操作指令外（譬如 add 这种赋值指令），还会拥有一个**唯一的整数索引值（log index）\**来表明它在日志集合中的位置。此外，每条日志还会存储一个\** term 号**（日志条目方块最上方的数字，相同颜色 term 号相同），该 term 表示 leader 收到这条指令时的当前任期，term 相同的 log 是由同一个 leader 在其任期内发送的。
 
@@ -33,7 +33,7 @@ raft动画:https://raft.github.io/
 
 leader会向follower发送 心跳包中会携带当前**已经安全复制（我们称之为 committed）**的日志索引，此处为 (term2, index1)。
 
-![image-20210331150142443](C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210331150142443.png)
+![image-20210331150142443](https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190519.png)
 
 ​	要使得 follower 的日志集合跟自己保持完全一致，leader 必须先找到二者间**最后一次**达成一致的地方。因为一旦这条日志达成一致，在这之前的日志一定也都一致（回忆下前文）。这个确认操作是在 AppendEntries RPC 的一致性检查步骤完成的。
 

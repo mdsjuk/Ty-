@@ -8,11 +8,11 @@
 
 - BIO 同步阻塞 
 
-<img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101508058.png" alt="image-20210326101508058" style="zoom: 67%;" />
+<img src="https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190334.png" alt="image-20210326101508058" style="zoom: 67%;" />
 
 - NIO 同步非阻塞
 
-  <img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101526711.png" alt="image-20210326101526711" style="zoom: 67%;" />
+  <img src="https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190335.png" alt="image-20210326101526711" style="zoom: 67%;"/>
 
   
 
@@ -22,7 +22,7 @@
 
   - IO多路复用
 
-    ​	                                     <img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101538535.png" alt="image-20210326101538535" style="zoom:67%;" />
+    ​	                                    <img src="https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190336.png" alt="image-20210326101538535" style="zoom:67%;"/>
 
     - select
 
@@ -74,8 +74,8 @@
 
       ​	支持边缘触发:  缓存里面有数据就也只通知一次
 
-      ![image-20210326104545839](C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326104545839.png)
+      ![image-20210326104545839](https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190337.png)
 
 - AIO 异步非阻塞
 
-<img src="C:\Users\25431\AppData\Roaming\Typora\typora-user-images\image-20210326101617487.png" alt="image-20210326101617487" style="zoom:67%;" />
+<img src="https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190338.png" alt="image-20210326101617487" style="zoom:67%;" />

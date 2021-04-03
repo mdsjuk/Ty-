@@ -97,7 +97,7 @@ public static void Fun(int a,Function<Integer,Integer> f){
 
   ​	stream具有延迟执行特性,惰性，只有调用终端操作时，中间操作才会执行。
 
-​	![Stream分类](D:\浏览器下载文件\Stream分类.png)
+​	![Stream分类](https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402190442.png)
 
 无状态：指元素的处理不受之前元素的影响；
 
@@ -109,10 +109,33 @@ public static void Fun(int a,Function<Integer,Integer> f){
 
 实例:
 
+```java
+List<Person> personList2 = new ArrayList<Person>();
+personList2.add(new Person("Lily", 7800, "female", "Washington"));
+personList2.add(new Person("Anni", 8200, "female", "New York"));
+personList2.add(new Person("Owen", 9500, "male", "New York"));
+personList2.add(new Person("Alisa", 7900, "female", "New York"));
+```
+
 1. 从员工集合中筛选出salary大于8000的员工，并放置到新的集合里。
 2. 统计员工的最高薪资、平均薪资、薪资之和。
 3. 将员工按薪资从高到低排序，同样薪资者年龄小者在前。
 4. 将员工按性别分类，将员工按性别和地区分类，将员工按薪资是否高于8000分为两部分
+
+```java
+List new_list=personList2.stream().filter(e->e.salary>8000).collect(Collectors.toList());
+int max_salary=personList2.stream().map(e->e.salary).max((x,y)->x>y?1:0).get();
+int min_salary=personList2.stream().map(e->e.salary).min((x,y)->x>y?0:1).get();
+/**排序**/
+personList2.stream().sorted((x,y)->{if (x.salary==y.salary)
+{return x.sex.length()-y.sex.length();}else{
+    return x.salary-y.salary;
+}}).forEach(System.out::println);
+
+/**分组=**/
+personList2.stream().collect(Collectors.groupingBy(Person::getArea,Collectors.groupingBy(
+Person::getSex)));
+```
 
 - 集合与数组 创建流
 
@@ -174,7 +197,7 @@ Integer v2 = list.stream().reduce(0,
 System.out.println(v2); 
 
 /*
- * 计算过程是(1,2,3,4,5) -> 1*2*3*4*5=120？
+ * 计算过程是(1,2,3,4,5) -> 1s*2*3*4*5=120？
  * 实际是(1,2,3,4,5) -> ((1,2),(3,(4,5))) -> (2,(3,20)) -> (2,60) -> 120
  */
 result = list.stream().parallel().reduce((a, b) -> a * b).get();
@@ -205,3 +228,5 @@ System.out.println(result);
                 });
         System.out.println(v3);
 ```
+
+![image-20210402220011034](https://cdn.jsdelivr.net/gh/mdsjuk/Picture/imgs/20210402220011.png)
